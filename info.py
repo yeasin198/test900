@@ -17,12 +17,12 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Secret key for session management
 
 # MongoDB setup
-client = MongoClient(os.getenv('MONGO_URI'))
+client = MongoClient(os.getenv('mongodb+srv://wiyayi4591:wiyayi4591@cluster0.bjywyux.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'))
 db = client.movie_database
 movies_collection = db.movies
 
 # TMDB API setup
-TMDB_API_KEY = os.getenv('TMDB_API_KEY')
+TMDB_API_KEY = os.getenv('275aff9f1c570308fa10d14c6f49f998')
 TMDB_BASE_URL = "https://api.themoviedb.org/3"
 TMDB_IMG_URL = "https://image.tmdb.org/t/p/w500"
 
@@ -242,8 +242,8 @@ def login():
     
     return '''
     <form method="POST">
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="password"><br>
+        Username: <input type="text" name="yeasin198"><br>
+        Password: <input type="password" name="yeasin198"><br>
         <input type="submit" value="Login">
     </form>
     '''
