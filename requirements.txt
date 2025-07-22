@@ -1,3 +1,12 @@
+project-folder/
+│
+├── app.py                 # মূল Python ফাইল (Flask App)
+├── templates/             # HTML টেমপ্লেট ফোল্ডার
+│   └── index.html         # ফাইল যেখানে আপনি HTML কোড রেখেছেন
+├── static/                # CSS, JS, এবং ইমেজ ফোল্ডার
+├── requirements.txt       # Flask এবং অন্যান্য প্যাকেজ
+├── .env                   # আপনার environment ভেরিয়েবল
+└── bot.py                 # যদি কোনো অতিরিক্ত স্ক্রিপ্ট থাকে
 Flask==2.0.2
 requests==2.26.0
 python-dotenv==0.19.2
