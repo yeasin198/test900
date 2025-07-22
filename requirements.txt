@@ -10,3 +10,58 @@ project-folder/
 Flask==2.0.2
 requests==2.26.0
 python-dotenv==0.19.2
+import os
+
+# ফাইলের বর্তমান অবস্থান
+print("Current working directory:", os.getcwd())
+import os
+
+# ফাইলপথ ডায়নামিকভাবে তৈরি
+file_path = os.path.join(os.getcwd(), 'bot.py')
+
+# যদি ফাইলটি সেখানে থাকে, তাহলে রান করুন
+if os.path.exists(file_path):
+    print("File exists:", file_path)
+else:
+    print("File does not exist:", file_path)
+from flask import Flask, render_template, send_from_directory
+import os
+
+app = Flask(__name__)
+
+# স্ট্যাটিক ফাইলের জন্য ফোল্ডার নাম
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
+
+@app.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+# ফাইল আপলোড করার সময়
+from flask import request
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return 'No file part'
+    
+    file = request.files['file']
+    if file.filename == '':
+        return 'No selected file'
+    
+    # ফাইলকে সঠিক ফোল্ডারে সেভ করা
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+    return 'File uploaded successfully'
+TMDB_API_KEY=your_api_key_here
+MONGO_URI=your_mongo_db_connection_string
+app = Flask(__name__, static_folder='static')
+
+# ফোল্ডার নাম অনুসারে স্ট্যাটিক ফাইল অ্যাক্সেস করতে পারেন:
+@app.route('/static/<filename>')
+def static_files(filename):
+    return send_from_directory('static', filename)
